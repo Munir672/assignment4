@@ -4,76 +4,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pizza</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
-<body style="background-color: <%= backgroundColor %>;">  
+<!-- Why here I have a problem ? -->
+<body style="background-color: <%= newColor %>;"> 
     <header>
         <h1>Langara Pizza</h1>
         <p class="tagline">Online Order Form</p>
     </header>
-
-    <!-- Pizza Order Form -->
+     
     <form action="/orders" method="post">
+        <!-- TODO: pizza order form -->
         <fieldset id="pizzaDesign">
             <legend>Design Your Pizza</legend>
-            
-            <!-- Sauce Selection -->
+            <!-- for sauces  -->
             <fieldset id="Sauces">
                 <legend>Sauces</legend>
                 <label>
-                    <input type="radio" name="sauces" value="tomato" checked>
+                    <input type="radio" name="sauces" id="tomato" value="tomato" checked>
                     Tomato
                 </label>
                 <label>
-                    <input type="radio" name="sauces" value="alfredo">
+                    <input type="radio" name="sauces" id="alfredo" value="alfredo">
                     Alfredo
                 </label>
             </fieldset>
-
-            <!-- Toppings Selection -->
+            <!-- for toppings  -->
             <fieldset id="toppings">
                 <legend>Toppings</legend>
                 <label>
-                    Pepperoni <input type="checkbox" name="Toppings" value="Pepperoni">
+                    Pepperoni
+                    <input type="checkbox" name="Toppings" value="Pepperoni">
                 </label>
                 <label>
-                    Ham <input type="checkbox" name="Toppings" value="Ham">
+                    Ham
+                    <input type="checkbox" name="Toppings" value="Ham">
                 </label>
                 <label>
-                    Vegetarian Sausage <input type="checkbox" name="Toppings" value="Vegatarian_Sausage">
+                    Vegatarian_Sausage
+                    <input type="checkbox" name="Toppings" value="Vegatarian_Sausage">
                 </label>
                 <label>
-                    Mushrooms <input type="checkbox" name="Toppings" value="Mushrooms">
+                    Mushrooms
+                    <input type="checkbox" name="Toppings" value="Mushrooms">
                 </label>
                 <label>
-                    Peppers <input type="checkbox" name="Toppings" value="Peppers">
+                    Peppers
+                    <input type="checkbox" name="Toppings" value="Peppers">
                 </label>
                 <label>
-                    Olives <input type="checkbox" name="Toppings" value="Olives">
+                    Olives
+                    <input type="checkbox" name="Toppings" value="Olives">
                 </label>
             </fieldset>
         </fieldset>
 
-        <!-- User Info -->
-        <fieldset>
-            <legend>Your Info</legend>
+        <!-- name of the person  -->
+         <fieldset>
+            <legend>
+                Your Info
+            </legend>
             <label>
-                Name: <input type="text" name="fullName">
+                Name: 
+                <input type="text" name="fullName" >
+               
             </label>
             <label>
-                Email: <input type="text" name="email">
+                Email:
+                <input type="text" name="email" >
             </label>
-        </fieldset>
+         </fieldset>
+         <button>
+            Submit
+         </button>
+       
+        
+    </form> 
 
-        <button type="submit">Submit</button>
+    <form action="/" method="GET" id="color-form">
+        <label>
+            Change background color: 
+            <input type="color" name="color">
+        </label>
+        <button>Submit</button>
     </form>
-
-    <!-- Color Picker Form -->
-    <form action="/" method="GET">
-        <label for="color">Pick a Color:</label>
-        <input type="color" id="color" name="color">
-        <button type="submit">Set Background</button>
-    </form>
-
 </body>
 </html>

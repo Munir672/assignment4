@@ -1,43 +1,42 @@
 import validator from 'validator';
 
 const pizzaValidator = (req, res, next) => {
+    // Initialize errors array
     res.locals.errors = [];
 
-    // Check if sauces are selected and valid
-    const sauceArray = ["tomato", "alfredo"];
-    if (!req.body.sauces || !Array.isArray(req.body.sauces) || !req.body.sauces.every(sauce => sauceArray.includes(sauce))) {
-        res.locals.errors.push({
+    // Validate Sauce 
+    const validSauces = ["tomato", "alfredo"]; 
+    if (!req.body.sauces || !validSauces.includes(req.body.sauces)) {
+        let thisError = {
             field: "Sauces",
-            message: "Your selected sauce is not in our list."
-        });
+            message: "Invalid sauce selection. Please choose either 'Tomato' or 'Alfredo'."
+        };
+        res.locals.errors.push(thisError);
     }
 
-    // Check toppings: must be between 1 and 3, and valid toppings
-    const topArray = ["Pepperoni", "Ham", "Vegatarian_Sausage", "Mushrooms", "Peppers", "Olives"];
+    //  Validate Toppings
+    const validToppings = ["Pepperoni", "Ham", "Vegatarian_Sausage", "Mushrooms", "Peppers", "Olives"];
     if (!req.body.Toppings || req.body.Toppings.length < 1 || req.body.Toppings.length > 3) {
         res.locals.errors.push({
             field: "Toppings",
             message: "You must select between 1 and 3 toppings."
         });
-    } else {
+    }
+
+    //  Validate Toppings 
+    if (req.body.Toppings) {
         req.body.Toppings.forEach(element => {
-            if (!topArray.includes(element.trim())) {
+            if (!validToppings.includes(element)) {
                 res.locals.errors.push({
                     field: "Toppings",
-                    message: `The topping ${element} is not in our list.`
+                    message: `Invalid topping: ${element}. Please choose from the available options.`
                 });
             }
         });
     }
 
-    // Trim spaces from fullName before validation
-    if (req.body.fullName) {
-        req.body.fullName = req.body.fullName.trim();
-    } else {
-        req.body.fullName = "";
-    }
-
-    // Validate User's Name Length
+    //  Validate Name
+    req.body.fullName = req.body.fullName.trim();
     if (req.body.fullName.length < 3 || req.body.fullName.length > 30) {
         res.locals.errors.push({
             field: "Name",
@@ -45,29 +44,32 @@ const pizzaValidator = (req, res, next) => {
         });
     }
 
-    // Email Validation
-    if (!req.body.email || !validator.isEmail(req.body.email.trim())) {
+    //  Validate Email Format
+    if (!validator.isEmail(req.body.email)) {
         res.locals.errors.push({
-            field: "Email Field",
-            message: "Your email is not a valid email."
+            field: "Email",
+            message: "Invalid email format."
         });
     }
 
-    next();
-};
+    next(); 
+}
 
-// Validate the color
+
+//color validation 
 const colorValidator = (req, res, next) => {
-    let color = (req.query.color || '').trim(); // Get color from query, ensuring it's a string
-
-    // Validate the color using the validator.js library
-    if (!validator.isHexColor(color)) {
-        color = '#fffeed'; // Default color if invalid
+    let color = req.query.color; 
+    
+    if (!color || !validator.isHexColor(color)) {
+        color = "#fffeed"; // 
     }
 
-    res.locals.color = color; // Store the validated color for use in templates
-    next();
+    // Store validated color
+    res.locals.color = color;
+
+    next(); 
 };
 
 
 export { pizzaValidator, colorValidator };
+
