@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Langara Pizza</h1>
+        <p class="tagline">Online Order Form</p>
+    </header>
+     
+    <form action="/orders" method="post">
+        <!-- TODO: pizza order form -->
+        <fieldset id="pizzaDesign">
+            <legend>Design Your Pizza</legend>
+            <!-- for sauces  -->
+            <fieldset id="Sauces">
+                <legend>Sauces</legend>
+                <label>
+                    <input type="radio" name="sauces" id="tomato" value="tomato" checked>
+                    Tomato
+                </label>
+                <label>
+                    <input type="radio" name="sauces" id="alfredo" value="alfredo">
+                    Alfredo
+                </label>
+            </fieldset>
+            <!-- for toppings  -->
+            <fieldset id="toppings">
+                <legend>Toppings</legend>
+                <label>
+                    Pepperoni
+                    <input type="checkbox" name="Toppings" value="Pepperoni">
+                </label>
+                <label>
+                    Ham
+                    <input type="checkbox" name="Toppings" value="Ham">
+                </label>
+                <label>
+                    Vegatarian_Sausage
+                    <input type="checkbox" name="Toppings" value="Vegatarian_Sausage">
+                </label>
+                <label>
+                    Mushrooms
+                    <input type="checkbox" name="Toppings" value="Mushrooms">
+                </label>
+                <label>
+                    Peppers
+                    <input type="checkbox" name="Toppings" value="Peppers">
+                </label>
+                <label>
+                    Olives
+                    <input type="checkbox" name="Toppings" value="Olives">
+                </label>
+            </fieldset>
+        </fieldset>
+
+        <!-- name of the person  -->
+         <fieldset>
+            <legend>
+                Your Info
+            </legend>
+            <label>
+                Name: 
+                <input type="text" name="fullName" >
+               
+            </label>
+            <label>
+                Email:
+                <input type="text" name="email" >
+            </label>
+         </fieldset>
+         <button>
+            Submit
+         </button>
+       
+        
+    </form> -->
+
+    <form action="/colors" method="post">
+        <label for="nc">Pick a COlor please</label>
+        <input type="color" name="nc" >
+        <label for="nn">Also write a name for your color</label>
+        <input type="text" name="nn" >
+        <button type="submit">ss</button>
+    </form>
+
+    <form action="/color" method="GET" id="color-form">
+        <label>
+            Change background color: 
+            <input type="color" name="nColor">
+        </label>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
